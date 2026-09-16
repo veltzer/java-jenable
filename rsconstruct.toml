@@ -16,7 +16,7 @@ src_dirs = ["src", "scripts"]
 src_dirs = ["src", "scripts"]
 
 [processor.taplo]
-src_files = [".rumdl.toml", "rsconstruct.toml"]
+src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
 # The Makefile compiled src/**/*.java together with
 # `javac -Xlint:all <sources> -d bin`. scripts/javac_build.py runs that exact
