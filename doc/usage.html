@@ -3,9 +3,14 @@
 
 <head>
  <title>JEnable Program Usage</title>
+ <style>
+  body { background-color: white; }
+  table.list { width: 90%; margin-left: auto; margin-right: auto; border-spacing: 12px; }
+  table.list td.key { text-align: left; vertical-align: top; white-space: nowrap; }
+ </style>
 </head>
 
-<body bgcolor="white">
+<body>
 <h1>JEnable Program Usage</h1>
 
 <p><code>JEnable</code> is structured as a single Java class in the default package
@@ -13,35 +18,35 @@ to make it as easy to deploy as possible. It does not require anything in the cl
 except the standard Java libraries. It has not been tested with JDK 1.1, but should
 be compatible.</p>
 
-<p>The command line is as follows:
+<p>The command line is as follows:</p>
 <pre>
 <code>java [-cp .] JEnable [-options] [path-list]</code>
 </pre>
-The "-cp ." parameter for the JVM is only required if the local directory is not
+<p>The "-cp ." parameter for the JVM is only required if the local directory is not
 on the default classpath (or with the directory the <code>JEnable.class</code> file
 is in in place of '.' if the file is not in the local directory).</p>
 
-<p>Options are as follows:
-<table width="90%" align="center" cellspacing="12">
-<tr><td align="left" valign="top" nowrap><b>-b</b></td><td><b>b</b>ackup directory tree with base directory as next argument. When
+<p>Options are as follows:</p>
+<table class="list">
+<tr><td class="key"><b>-b</b></td><td><b>b</b>ackup directory tree with base directory as next argument. When
 this option is given each modified file (not including files which only have their
 extensions changed) is copied to a tree under the supplied base directory.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-d</b></td><td><b>d</b>isabled token list as next argument. Each token in the comma
+<tr><td class="key"><b>-d</b></td><td><b>d</b>isabled token list as next argument. Each token in the comma
 separated list which follows is disabled in the new configuration.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-e</b></td><td><b>e</b>nabled token list as next argument. Each token in the comma
+<tr><td class="key"><b>-e</b></td><td><b>e</b>nabled token list as next argument. Each token in the comma
 separated list which follows is enabled in the new configuration.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-m</b></td><td><b>m</b>odified listing, list modified files as they're
+<tr><td class="key"><b>-m</b></td><td><b>m</b>odified listing, list modified files as they're
 processed.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-p</b></td><td><b>p</b>reserve last modify timestamp on modified files. Modified files
+<tr><td class="key"><b>-p</b></td><td><b>p</b>reserve last modify timestamp on modified files. Modified files
 keep their previous last modify timestamps.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-q</b></td><td><b>q</b>uiet execution, skip normal summary of files processed
+<tr><td class="key"><b>-q</b></td><td><b>q</b>uiet execution, skip normal summary of files processed
 and modified for each path supplied.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-t</b></td><td><b>t</b>ilde suffix for modified file backup. The original version of
+<tr><td class="key"><b>-t</b></td><td><b>t</b>ilde suffix for modified file backup. The original version of
 each modified file is renamed with a '~' appended to the original file name, within the
 original directory.</td></tr>
-<tr><td align="left" valign="top" nowrap><b>-v</b></td><td><b>v</b>erbose listing, list all files as they're processed.</td></tr>
+<tr><td class="key"><b>-v</b></td><td><b>v</b>erbose listing, list all files as they're processed.</td></tr>
 </table>
-Multiple options may be concatenated together with a single leading hyphen, or can
+<p>Multiple options may be concatenated together with a single leading hyphen, or can
 be listed separately.</p>
 
 <p>The optional path list gives the paths to be matched for source files to be processed.
@@ -49,11 +54,11 @@ The paths are in Ant-like form. They always use the forward slash '/' as the sep
 between directory names. Multiple paths can be supplied as a single argument with comma ','
 separators between the paths. Each name in the path may include '*' wildcards, and the
 special directory pattern '**' matches any number of intervening directories. For instance,
-the path:
+the path:</p>
 <pre>
 <code>"src/**/util/*"</code>
 </pre>
-matches every file name with "java" or "javx" extension in every subdirectory named
+<p>matches every file name with "java" or "javx" extension in every subdirectory named
 "util" within the tree under the "src" directory.</p>
 
 <p>If a path ends with a file extension, only files matching that extension (which may include

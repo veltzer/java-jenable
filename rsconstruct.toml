@@ -41,5 +41,5 @@ args = ["-c", "checkstyle.xml"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
-[processor.htmlhint]
+[processor.tidy]
 src_dirs = ["doc"]

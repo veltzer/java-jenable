@@ -3,14 +3,17 @@
 
 <head>
  <title>JEnable Program Example</title>
+ <style>
+  body { background-color: white; }
+ </style>
 </head>
 
-<body bgcolor="white">
+<body>
 <h1>JEnable Program Example</h1>
 
 <p>Here's an actual example of the <code>JEnable</code> program in use. Let's say
 we start with a class which wraps a <code>String</code> and provides access to the
-characters of the <code>String</code> one at a time:
+characters of the <code>String</code> one at a time:</p>
 <pre><code>public class StringWrapper
 {
     protected String m_text;
@@ -47,7 +50,7 @@ characters of the <code>String</code> one at a time:
     public String substring(int start) {
         return m_text.substring(start, m_offset);
     }
-}</code></pre></p>
+}</code></pre>
 
 <p>This is fine as far as it goes, but we decide we really want to be able to build
 it in different flavors for different projects. In one case, we want to make
@@ -57,7 +60,7 @@ limiting them to moving through it one character at a time, but figure we may as
 well let them reset to the start position in this case.</p>
 
 <p>After making the code changes to support all this, and adding the configuration
-control information, we end up with:
+control information, we end up with:</p>
 <pre><code>public class StringWrapper
 {
     protected String m_text;
@@ -112,12 +115,12 @@ control information, we end up with:
     }
 //#LIMIT}
 }</code></pre>
-At this point none of the optional code blocks have been disabled, since <code>JEnable</code>
-hasn't been run on the source code. If we now execute <code>JEnable</code> with the line:
+<p>At this point none of the optional code blocks have been disabled, since <code>JEnable</code>
+hasn't been run on the source code. If we now execute <code>JEnable</code> with the line:</p>
 <pre>
 <code>java JEnable -d REUSE StringWrapper.java</code>
 </pre>
-our source code becomes:
+<p>our source code becomes:</p>
 <pre><code>public class StringWrapper
 {
     protected String m_text;
@@ -172,15 +175,15 @@ our source code becomes:
     }
 //#LIMIT}
 }</code></pre>
-Only the code within the <code>REUSE</code> token conditional block has been modified,
+<p>Only the code within the <code>REUSE</code> token conditional block has been modified,
 since only this is the only token which was specified as either enabled or disabled.</p>
 
 <p>If we now change our mind and want to build the reusable form of the class with
-limited user access, we run <code>JEnable</code> again with the line:
+limited user access, we run <code>JEnable</code> again with the line:</p>
 <pre>
 <code>java JEnable -e REUSE,LIMIT StringWrapper.java</code>
 </pre>
-Now our source code becomes:
+<p>Now our source code becomes:</p>
 <pre><code>public class StringWrapper
 {
     protected String m_text;
@@ -235,7 +238,7 @@ Now our source code becomes:
     }
 //#LIMIT}
 }</code></pre>
-Since we gave settings for both tokens this time, both blocks of code were modified. The
+<p>Since we gave settings for both tokens this time, both blocks of code were modified. The
 <code>LIMIT</code> optional code block uses a '!' before the token, so the code which follows
 is commented out. The else marker line "<code>//#}LIMIT{</code>" reverses the prior state and
 allows the code which follows that marker to be active.</p>

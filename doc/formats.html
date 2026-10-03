@@ -3,9 +3,14 @@
 
 <head>
  <title>JEnable Control Statement Formats</title>
+ <style>
+  body { background-color: white; }
+  table.list { width: 90%; margin-left: auto; margin-right: auto; border-spacing: 12px; }
+  table.list td.key { text-align: left; vertical-align: top; white-space: nowrap; }
+ </style>
 </head>
 
-<body bgcolor="white">
+<body>
 <h1>JEnable Control Statement Formats</h1>
 
 <p>Embedded configuration control information used by <code>JEnable</code> takes the form of Java
@@ -29,26 +34,25 @@ as either enabled or disabled.</p>
 
 <p>Several different formats of configuration control statements are usable in source files, with
 different purposes. Some of the control statements use an additional character after the
-"<code>//#</code>" start of line but before the token. Here's the complete list of formats:
-<table width="90%" align="center" cellspacing="12">
-<tr><td align="left" valign="top" nowrap><code>//#token{</code></td><td>start of optional code block; include this code if token is enabled,
+"<code>//#</code>" start of line but before the token. Here's the complete list of formats:</p>
+<table class="list">
+<tr><td class="key"><code>//#token{</code></td><td>start of optional code block; include this code if token is enabled,
 exclude it if token is disabled</td></tr>
-<tr><td align="left" valign="top" nowrap><code>//#!token{</code></td><td>start of inverse optional code block; exclude this code if token is
+<tr><td class="key"><code>//#!token{</code></td><td>start of inverse optional code block; exclude this code if token is
 enabled, include it if token is disabled</td></tr>
-<tr><td align="left" valign="top" nowrap><code>//#}token{</code></td><td>else optional code block; if optional code was being included, change
+<tr><td class="key"><code>//#}token{</code></td><td>else optional code block; if optional code was being included, change
 to excluding, if was being excluded, change to including</td></tr>
-<tr><td align="left" valign="top" nowrap><code>//#token}</code></td><td>end of optional code block; ends
+<tr><td class="key"><code>//#token}</code></td><td>end of optional code block; ends
 conditionally included code</td></tr>
-<tr><td align="left" valign="top" nowrap><code>//#token*</code></td><td>optional file control, only valid as first line of a file with
+<tr><td class="key"><code>//#token*</code></td><td>optional file control, only valid as first line of a file with
 extension "java" or "javx"; include this file in build (changing extension to "java" if currently
 "javx") if token is enabled, exclude this file from build (changing extension to "javx" if
 currently "java") if token is disabled</td></tr>
-<tr><td align="left" valign="top" nowrap><code>//#!token*</code></td><td>inverse optional file control, only valid as first line of a file with
+<tr><td class="key"><code>//#!token*</code></td><td>inverse optional file control, only valid as first line of a file with
 extension "java" or "javx"; include this file in build (changing extension to "java" if currently
 "javx") if token is disabled, exclude this file from build (changing extension to "javx" if
 currently "java") if token is enabled</td></tr>
 </table>
-</p>
 
 <p>When a configuration change is made that excludes an optional code block from the build
 each line within the block is prefixed with "<code>//#token:</code>". This converts all the lines to comments
@@ -56,7 +60,7 @@ and prevents processing by the Java compiler and related tools. When a configura
 includes an optional code block in the build each line within the block has the
 "<code>//#token:</code>" prefix removed.</p>
 
-<p>For example, this original source code:
+<p>For example, this original source code:</p>
 <pre><code>//#ATOK{
     int i = 0;
 //#ATOK}
@@ -67,7 +71,7 @@ includes an optional code block in the build each line within the block has the
     int l = 3;
 //#BTOK}
 </code></pre>
-When processed with <code>ATOK</code> enabled and <code>BTOK</code> disabled gets changed to:
+<p>When processed with <code>ATOK</code> enabled and <code>BTOK</code> disabled gets changed to:</p>
 <pre><code>//#ATOK{
     int i = 0;
 //#ATOK}
@@ -78,7 +82,7 @@ When processed with <code>ATOK</code> enabled and <code>BTOK</code> disabled get
     int l = 3;
 //#BTOK}
 </code></pre>
-If it's then processed again with <code>BTOK</code> enabled it becomes:
+<p>If it's then processed again with <code>BTOK</code> enabled it becomes:</p>
 <pre><code>//#ATOK{
     int i = 0;
 //#ATOK}
@@ -89,16 +93,15 @@ If it's then processed again with <code>BTOK</code> enabled it becomes:
 //#BTOK:    int l = 3;
 //#BTOK}
 </code></pre>
-</p>
 
 <p>Nested optional blocks are allowed, but overlapping blocks are an error. For example, this
-case is invalid because of overlap:
+case is invalid because of overlap:</p>
 <pre><code>//#ATOK{
 //#BTOK{
 //#ATOK}
 //#BTOK}
 </code></pre>
-If a
+<p>If a
 configuration code change disables an outer optional block all contained blocks are ignored.</p>
 
 <p>Enabling an outer block is a little more complicated. In order to ensure proper processing
@@ -106,7 +109,7 @@ of nested option blocks, the user should generally specify <b>every</b> token us
 nested blocks as either enabled or disabled if <b>any</b> of them are either enabled or disabled
 in a configuration change. It is an error if an indeterminant beginning of block token (one
 with a token which is not on either list) is immediately contained within a block with an
-enabled token. In other words, the case:
+enabled token. In other words, the case:</p>
 <pre><code>//#ATOK{
 //#BTOK{
 //#CTOK{
@@ -114,7 +117,7 @@ enabled token. In other words, the case:
 //#BTOK}
 //#ATOK}
 </code></pre>
-gives an error if <code>ATOK</code> is on the enabled list and <code>BTOK</code> is not on either
+<p>gives an error if <code>ATOK</code> is on the enabled list and <code>BTOK</code> is not on either
 list, or if <code>ATOK</code> is <b>not</b>
 on the disabled list, <code>BTOK</code> is on the enabled list,  and <code>CTOK</code> is not on
 either list.</p>
