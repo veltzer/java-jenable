@@ -35,9 +35,8 @@ src_files = ["README.md"]
 
 # ─── java ────────────────────────────────────────────────────────────────────
 
-[processor.checker.checkstyle]
+[processor.checker.icheckstyle]
 src_dirs = ["src"]
-args = ["-c", "checkstyle.xml"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
