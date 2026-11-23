@@ -18,7 +18,7 @@ def main():
     if not sources:
         return
     os.makedirs(OUT, exist_ok=True)
-    sys.exit(subprocess.call(["javac", "-Xlint:all"] + sources + ["-d", OUT]))
+    sys.exit(subprocess.call(["javac", "-Xlint:all", *sources, "-d", OUT]))
 
 
 if __name__ == "__main__":
