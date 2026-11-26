@@ -13,6 +13,11 @@ src_dirs = ["src", "scripts"]
 [processor.checker.pyrefly]
 src_dirs = ["src", "scripts"]
 
+# check the XML files with xmllint
+[processor.checker.ixmllint]
+src_files = ["checkstyle.xml"]
+strict = true
+
 [processor.checker.taplo]
 src_files = [".ruff.toml", ".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
